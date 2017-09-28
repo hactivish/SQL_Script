@@ -1,3 +1,9 @@
+How to find nth highest salary in SQL Server using a Sub-Query
+How to find nth highest salary in SQL Server using a CTE
+How to find the 2nd, 3rd or 15th highest salary
+
+Let's use the following Employees table for this demo
+
 Use the following script to create Employees table
 Create table Employees
 (
