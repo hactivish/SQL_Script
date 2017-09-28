@@ -1,0 +1,30 @@
+We will be using Employees table to understand how a recursive CTE works. 
+sql server query to display org chart 
+
+Here is the recursive CTE that gets the organization hierarchy based on an EmployeeId. Notice that the recursive CTE has got 2 parts (Anchor & Recursive Member)
+Declare @ID int;
+Set @ID = 7;
+
+WITH EmployeeCTE AS
+(
+     -- Anchor
+     Select EmployeeId, EmployeeName, ManagerID
+     From Employees
+     Where EmployeeId = @ID
+    
+     UNION ALL
+    
+     -- Recursive Member
+     Select Employees.EmployeeId , Employees.EmployeeName, Employees.ManagerID
+     From Employees
+     JOIN EmployeeCTE
+     ON Employees.EmployeeId = EmployeeCTE.ManagerID
+)
+
+Select E1.EmployeeName, ISNULL(E2.EmployeeName, 'No Boss') as ManagerName
+From EmployeeCTE E1
+LEFT Join EmployeeCTE E2
+ON E1.ManagerID = E2.EmployeeId
+
+When David's EmployeeId is passed the query produces the following output 
+how does a recursive cte work 
