@@ -1,0 +1,3 @@
+Select *
+FROM Employees
+Where DATEDIFF(MONTH, HireDate, GETDATE()) Between 1 and N
